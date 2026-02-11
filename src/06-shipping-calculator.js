@@ -30,4 +30,38 @@
  */
 export function calculateShipping(weight, country, orderTotal) {
   // Your code here
+  if (weight <= 0 || orderTotal < 0) {
+    return -1 ;
+  }
+  var price = 0 ;
+  var flag = true ;
+  if(country.toUpperCase() === "US"){
+    if (weight <= 1) {
+      price = 5 ;
+    }
+    else if (weight <= 5){
+      price = 10 ;
+    }
+    else{
+      price = 15 ;
+    }
+  }
+  else{
+    flag = false ;
+     if (weight <= 1) {
+      price = 15 ;
+    }
+    else if (weight <= 5){
+      price = 25 ;
+    }
+    else{
+      price = 40 ;
+    }
+  }
+  if (flag && orderTotal > 50 || !flag && orderTotal > 100){
+    return 0 ;
+  }
+  else{
+    return price ;
+  }
 }
